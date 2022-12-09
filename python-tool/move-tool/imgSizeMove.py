@@ -5,8 +5,10 @@ import imghdr
 
 '''
     功能：
-        本代码实现将相同大小的图片移动到一起，文件夹以图片的大小命名
+        本代码实现移动文件夹的图片
+        将相同大小的图片移动到一起，文件夹以图片的大小命名
         损坏的图片移动到损坏的文件夹
+        复制：shutil.copy()
 '''
 
 
@@ -19,7 +21,6 @@ def moveImg(dirs, dirImg, doneDir, badDir):
         img_size = Image.open(img).size
         # 目录不存在,创建目录
         if not os.path.exists(doneDir + str(img_size)):
-            print('目录不存在', img_size)
             os.makedirs(doneDir + str(img_size))
         # 移动图片
         shutil.move(img, doneDir + str(img_size) + '/' + dirImg)
@@ -31,9 +32,8 @@ def moveImg(dirs, dirImg, doneDir, badDir):
 
 if __name__ == '__main__':
     total = 0  # 总数
-    bad = 0  # 损坏数量
-    img_dirs = ''  # 图片所在的文件夹
-    done_dirs = ''  # 完成后存放的文件夹
+    img_dirs = r'E:\img/'  # 图片所在的文件夹
+    done_dirs = r'E:\test/'  #
     bad_dirs = ''  # 损坏图片存放的文件夹
     # 遍历图片路径：图片路径
     path = os.listdir(img_dirs)
@@ -42,3 +42,6 @@ if __name__ == '__main__':
     for img_path in path:
         # 调用移动图片方法
         moveImg(img_dirs, img_path, done_dirs, bad_dirs)
+        total = total - 1
+        print('剩余%d张图片' % total)
+    print('---------已完成------------')
