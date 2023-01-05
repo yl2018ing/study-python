@@ -1,17 +1,18 @@
 # coding=utf-8
-__github__ = 'https://github.com/SmileZXLee/DocumentLightMarkWipeTool'
-
 import os
 from PIL import Image
 import numpy as np
 import imghdr
 
-
+'''
+    本代码用于将灰色照片转成纯黑白两种颜色的图片
+'''
 # main
 def main():
     print(u'欢迎使用DocumentLightMarkWipeTool！')
     # 只适用于黑白的图片
     while True:
+        # 获取文件夹
         input_dir = getInputPath().strip()
         output_dir = getOutputPath().strip()
         if os.path.exists(input_dir) and os.path.isdir(output_dir):
